@@ -5,22 +5,22 @@ public class Main {
     
     public static int square(int[][] arr, int row, int col){
         int[][] store = new int[row+1][col+1];
-        int max = Integer.MIN_VALUE;
+        int max = Integer.MIN_VALUE;                // to store the max square
         for(int i=0; i<=row; i++) store[i][0] = 0;
         for(int j=0; j<=col; j++) store[0][j] = 0;
         for(int i=1; i<=row; i++){
             for(int j=1; j<=col; j++){
-                if(arr[i-1][j-1]==0){
+                if(arr[i-1][j-1]==0){               // if arr[][] == 0 --> store[][] = 0     
                     store[i][j]=0;
                     continue;
-                }
+                }                                   // else
                 int a=Integer.MAX_VALUE, b=Integer.MAX_VALUE, c=Integer.MAX_VALUE;
                 if(i-1>=0) a = store[i-1][j];
                 if(j-1>=0) b = store[i][j-1];
                 if(i-1>=0 && j-1>=0) c = store[i-1][j-1];
-                int min = Integer.min(Integer.min(a,b), c);
-                store[i][j] = min+1;
-                max = Integer.max(max, store[i][j]);
+                int min = Integer.min(Integer.min(a,b), c);   // min value of store[][] in up, left, up-left cell in store
+                store[i][j] = min+1;                          // store[i][j] = min+1
+                max = Integer.max(max, store[i][j]);          // update max
             }
         }
         return max;
